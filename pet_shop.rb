@@ -46,7 +46,7 @@ end
 def find_pet_by_name(pet_shop, pet_name)
   for item in pet_shop[:pets]
     if item[:name] == pet_name
-      return item[:name]
+      return item
       end
     end
     return nil
@@ -59,4 +59,39 @@ if item[:name] == pet_name
     pet_shop[:pets].delete(item)
   end
 end
+end
+
+# for test_add_pet_to_stock.
+# Should add a new pet and return the new total number (the integer 7).
+
+def add_pet_to_stock(pet_shop, new_pet)
+  pet_shop[:pets].push(new_pet)
+end
+
+# for test_customer_cash
+# returns the cash held by a customer by array index. Should return the integer 1000.
+
+def customer_cash(customer)
+  return customer[:cash]
+end
+
+#for test_remove_customer_cash
+# Reduces the value of cash from a customer by array index by a given amount. Should return the integer 900.
+
+def remove_customer_cash(customer, amount)
+  return customer[:cash] -= amount
+end
+
+# for test_customer_pet_count
+# returns the total number of pets a customer has. Should return 0.
+
+def customer_pet_count(customer)
+  return customer[:pets].length
+end
+
+# for test_add_pet_to_customer
+# adds a new pet to a customer. Should return 1.
+
+def add_pet_to_customer(customer, new_pet)
+  return customer[:pets].push(new_pet)
 end
