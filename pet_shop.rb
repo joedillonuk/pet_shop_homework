@@ -110,15 +110,13 @@ end
 # for test_sell_pet_to_customer__(pet_found, pet_not_found,insufficient_funds)
 
 def sell_pet_to_customer(pet_shop, pet, customer)
-  if customer_can_afford_pet(customer, pet) == true
+if pet == nil or customer_can_afford_pet(customer, pet) == false # switching this around to the first check
+return
+else
     pet_shop[:admin][:pets_sold] += 1
     add_pet_to_customer(customer, pet)
     remove_customer_cash(customer, pet[:price])
     add_or_remove_cash(pet_shop, pet[:price])
-    remove_pet_by_name(pet)
-    return
-  elsif
-    customer_can_afford_pet(customer, pet,) == false
-    return false
+    remove_pet_by_name(pet_shop, pet) #got an error on this fuction call as I had passed through a single argument in error (forgot the pet_shop).
   end
 end
