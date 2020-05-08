@@ -47,18 +47,18 @@ def find_pet_by_name(pet_shop, pet_name)
   for item in pet_shop[:pets]
     if item[:name] == pet_name
       return item
-      end
     end
-    return nil
   end
+  return nil
+end
 
 # for test_remove_pet_by_name. Should remove a pet and then use the find_pet_by_name function to remove them.
 def remove_pet_by_name(pet_shop, pet_name)
-for item in pet_shop[:pets]
-if item[:name] == pet_name
-    pet_shop[:pets].delete(item)
+  for item in pet_shop[:pets]
+    if item[:name] == pet_name
+      pet_shop[:pets].delete(item)
+    end
   end
-end
 end
 
 # for test_add_pet_to_stock.
@@ -94,4 +94,31 @@ end
 
 def add_pet_to_customer(customer, new_pet)
   return customer[:pets].push(new_pet)
+end
+
+# --- OPTIONAL ---
+
+# for test_customer_can_afford_pet__(sufficient_funds, insufficient_funds and exact_funds).
+# Should check if customer can afford Bors the Younger and return true, false and true respectively
+def customer_can_afford_pet(customer, new_pet)
+  if customer[:cash] >= new_pet[:price]
+    return true
+  end
+  return false
+end
+
+# for test_sell_pet_to_customer__(pet_found, pet_not_found,insufficient_funds)
+
+def sell_pet_to_customer(pet_shop, pet, customer)
+  if customer_can_afford_pet(customer, pet) == true
+    pet_shop[:admin][:pets_sold] += 1
+    add_pet_to_customer(customer, pet)
+    remove_customer_cash(customer, pet[:price])
+    add_or_remove_cash(pet_shop, pet[:price])
+    remove_pet_by_name(pet)
+    return
+  elsif
+    customer_can_afford_pet(customer, pet,) == false
+    return false
+  end
 end
